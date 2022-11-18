@@ -1,5 +1,5 @@
 export interface CreateUserDto {
-  id: string
+  id: number
   firstName?: string
   lastName?: string
   email: string
@@ -7,4 +7,5 @@ export interface CreateUserDto {
   type: string
   UpdatedAt?: number
   CreatedAt: number
+  companyName?: string
 }

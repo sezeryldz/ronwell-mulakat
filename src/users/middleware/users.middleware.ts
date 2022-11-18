@@ -37,25 +37,10 @@ class UsersMiddleware {
     next: express.NextFunction,
   ) {
     const user = await userService.getUserByEmail(req.body.email)
-    if (user && user.id === req.params.userId) {
+    if (user.id === Number(req.params.userId)) {
       next()
     } else {
       res.status(400).send({ error: 'Invalid email' })
-    }
-  }
-
-  // Here we need to use an arrow function to bind `this` correctly
-  validatePatchEmail = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-  ) => {
-    if (req.body.email) {
-      log('Validating email', req.body.email)
-
-      this.validateSameEmailBelongToSameUser(req, res, next)
-    } else {
-      next()
     }
   }
 
@@ -64,7 +49,7 @@ class UsersMiddleware {
     res: express.Response,
     next: express.NextFunction,
   ) {
-    const user = await userService.readById(req.params.userId)
+    const user = await userService.readById(Number(req.params.userId))
     if (user) {
       next()
     } else {

@@ -1,36 +1,70 @@
-import UsersDao from '../daos/users.dao'
+import debug from 'debug'
+
+const log: debug.IDebugger = debug('app:in-memory-dao')
+
 import { CRUD } from '../../common/interfaces/crud.interface'
 import { CreateUserDto } from '../dto/create.user.dto'
-import { PutUserDto } from '../dto/put.user.dto'
-import { PatchUserDto } from '../dto/patch.user.dto'
+
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 class UsersService implements CRUD {
-  async create(resource: CreateUserDto) {
-    return UsersDao.addUser(resource)
+  constructor() {
+    log('Created new instance of User')
   }
 
-  async deleteById(id: string) {
-    return UsersDao.removeUserById(id)
+  async create(user: CreateUserDto) {
+    const prismaCompany = await prisma.company.create({
+      data: {
+        company: user.companyName,
+      },
+    })
+
+    const prismaUser = await prisma.user.create({
+      data: {
+        email: user.email,
+        password: user.password,
+        name: user.firstName,
+        surname: user.lastName,
+        type: 'B2B',
+        companyId: prismaCompany.id,
+      },
+    })
+
+    return {
+      company: user.companyName,
+      user: prismaUser,
+    }
   }
 
-  async list(limit: number, page: number) {
-    return UsersDao.getUsers()
+  async deleteById(userId: number) {
+    const deleteUser = await prisma.user.delete({
+      where: {
+        id: userId,
+      },
+    })
+
+    return deleteUser
   }
 
-  async patchById(id: string, resource: PatchUserDto) {
-    return UsersDao.patchUserById(id, resource)
+  async list() {
+    return await prisma.user.findMany()
   }
 
-  async readById(id: string) {
-    return UsersDao.getUserById(id)
-  }
-
-  async putById(id: string, resource: PutUserDto) {
-    return UsersDao.putUserById(id, resource)
+  async readById(userId: number) {
+    return await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    })
   }
 
   async getUserByEmail(email: string) {
-    return UsersDao.getUserByEmail(email)
+    return await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    })
   }
 }
 
