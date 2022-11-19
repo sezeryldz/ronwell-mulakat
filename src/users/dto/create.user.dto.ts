@@ -4,8 +4,11 @@ export interface CreateUserDto {
   lastName?: string
   email: string
   password: string
+  phone?: string
   type: string
-  UpdatedAt?: number
-  CreatedAt: number
+  updatedAt?: string
+  createdAt?: string
   companyName?: string
+  accessToken?: string
+  hostCompany?: number
 }

@@ -15,15 +15,31 @@ export class UsersRoutes extends CommonRoutesConfig {
       .post(
         UsersMiddleware.validateRequiredUserBodyFields,
         UsersMiddleware.validateSameEmailDoesntExist,
+        UsersMiddleware.validateCompanyNameDoesntExist,
+        UsersMiddleware.accessTokenCheck,
         UsersController.createUser,
+      )
+
+    this.app
+      .route('/users/login')
+      .post(
+        UsersMiddleware.validateRequiredUserBodyFields,
+        UsersMiddleware.validateEmailRegistered,
+        UsersController.loginUser,
+      )
+    this.app
+      .route('/users/resetpassword')
+      .post(
+        UsersMiddleware.validatePasswordField,
+        UsersMiddleware.accessTokenCheck,
+        UsersController.resetPassword,
       )
 
     this.app.param('userId', UsersMiddleware.extractUserId)
     this.app
       .route('/users/:userId')
-      .all(UsersMiddleware.validateUserExists)
-      .get(UsersController.getUserById)
-      .delete(UsersController.removeUser)
+      .get(UsersMiddleware.validateUserExists, UsersController.getUserById)
+      .delete(UsersMiddleware.validateUserExists, UsersController.removeUser)
 
     return this.app
   }

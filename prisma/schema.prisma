@@ -16,20 +16,16 @@ model User {
   password  String
   name      String?
   surname   String?
-  type      Type     @default(B2C)
-  CreatedAt DateTime @default(now())
-  UpdatedAt DateTime @default(now())
-  Company   Company  @relation(fields: [companyId], references: [id])
+  phone     String?
+  type      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  company   Company  @relation(fields: [companyId], references: [id])
   companyId Int
 }
 
 model Company {
-  id      Int    @id @default(autoincrement())
-  company String
-  users   User[]
-}
-
-enum Type {
-  B2B
-  B2C
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[]
 }
