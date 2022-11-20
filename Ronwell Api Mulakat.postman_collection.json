@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "ccc41200-68ca-479c-945d-65a8ade58c4c",
+		"name": "Ronwell Api Mulakat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "B2B",
+			"item": [
+				{
+					"name": "Register B2B User",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sezer339@gmail.com\",\r\n    \"password\": \"123test\",\r\n    \"firstName\": \"Sezer\",\r\n    \"lastName\": \"YILDIZ\",\r\n    \"phone\": \"9022739256\",\r\n    \"companyName\":\"Happy Company\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost/users",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login B2B User",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sezer339@gmail.com\",\r\n    \"password\": \"123test\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost/users/login",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "B2C",
+			"item": [
+				{
+					"name": "Register B2C User",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njg4ODE1MDMsImRhdGEiOnsiZW1haWwiOiJzZXplcjIyMjIyQGdtYWlsLmNvbSIsInR5cGUiOiJCMkMiLCJjb21wYW55IjoxfSwiaWF0IjoxNjY4ODc3OTAzfQ.tP4nzt-A1K18m_87ozhRIy7-DIIhYK-wnEEoWq5Vpjo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"2dds@gmail.com\",\r\n    \"password\": \"123test\",\r\n    \"firstName\": \"Sezer\",\r\n    \"lastName\": \"YILDIZ\",\r\n    \"phone\": \"9022739256\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost/users",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login B2C User",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sezer22222@gmail.com\",\r\n    \"password\": \"123test\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost/users/login",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reset Password",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njg4ODE2NTEsImRhdGEiOnsiZW1haWwiOiJzZXplcjMzOUBnbWFpbC5jb20iLCJ0eXBlIjoiQjJCIiwiY29tcGFueSI6MX0sImlhdCI6MTY2ODg3ODA1MX0.Ido4Ol-GP_f_-v74aPs6whLeKGo9x30GZRaLs0hBSQA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"123test\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost/users/resetpassword",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"resetpassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One User By ID",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost/users/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Users",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost/users/",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost/users/5",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,7 +1,7 @@
 import debug from 'debug'
 import { CreateUserDto } from '../dto/create.user.dto'
 import { PrismaClient } from '@prisma/client'
-const log: debug.IDebugger = debug('app:in-memory-dao')
+const log: debug.IDebugger = debug('app:prisma-service')
 const prisma = new PrismaClient()
 
 class PrismaUsersService {
@@ -10,7 +10,7 @@ class PrismaUsersService {
   }
 
   async create(user: CreateUserDto) {
-    let companyId
+    let companyId: number
     if (user.type == 'B2B') {
       const prismaCompany = await prisma.company.create({
         data: {
@@ -19,7 +19,6 @@ class PrismaUsersService {
       })
       companyId = prismaCompany.id
     } else {
-      console.log(user.companyName)
       const company = await this.getCompanyById(user.hostCompany)
       companyId = company.id
     }
@@ -48,7 +47,6 @@ class PrismaUsersService {
         id: userId,
       },
     })
-
     return deleteUser
   }
 

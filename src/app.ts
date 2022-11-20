@@ -55,3 +55,6 @@ server.listen(port, () => {
   // always want to know when the server is done starting up
   console.log(runningMessage)
 })
+
+// We are exporting the express app for tests
+export default app

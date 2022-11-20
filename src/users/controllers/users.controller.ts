@@ -1,16 +1,12 @@
 // we import express to add types to the request/response objects from our controller functions
 import express from 'express'
-
 // we import our newly created prisma services
 import PrismaUsersService from '../services/prisma.users.service'
-
 // we import the argon2 library for password hashing
 import argon2 from 'argon2'
-
 // we use debug with a custom context as described
 import debug from 'debug'
-
-// we are using jwt library to login users
+// jsonwebtoken library is for generating jwt tokens
 import jwt from 'jsonwebtoken'
 
 const log: debug.IDebugger = debug('app:users-controller')
@@ -32,16 +28,16 @@ class UsersController {
       })
     } else {
       req.body.password = await argon2.hash(req.body.password)
-
       const createdUser = await PrismaUsersService.create(req.body)
-
       res.status(201).send(createdUser)
     }
   }
 
   async removeUser(req: express.Request, res: express.Response) {
     log(await PrismaUsersService.deleteById(Number(req.body.id)))
-    res.status(200).send(`User ${req.body.id} removed succesfully`)
+    res.status(200).send({
+      message: `User ${req.body.id} removed succesfully`,
+    })
   }
 
   async loginUser(req: express.Request, res: express.Response) {

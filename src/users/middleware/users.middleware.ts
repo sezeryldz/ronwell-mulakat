@@ -1,7 +1,7 @@
 import express from 'express'
 import userService from '../services/prisma.users.service'
 
-// we are using jwt library to check access tokens
+// jsonwebtoken library is for generating jwt tokens
 import jwt from 'jsonwebtoken'
 
 interface JWTI {
