@@ -13,7 +13,11 @@ How to run the project:
 3- Push the prisma schema to posgresql with: npx prisma db push
 4- yarn dev
 
-Tests:
+Postman Collection:
+Is in main folder of the project;
+Ronwell Api Mulakat.postman_collection.json
+
+Jest Tests:
 First we are doing a general check;
 Creates 3 users, lists all of them, then lists one and deletes that one.
 Then we imitate a user:
